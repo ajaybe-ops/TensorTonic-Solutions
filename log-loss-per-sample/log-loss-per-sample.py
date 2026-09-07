@@ -1,17 +1,15 @@
 import math
 
-def log_loss(y_true: list, y_pred: list, eps: float = 1e-15) ->list:
-    """
-    Returns a list of loss values
-    """
-
+def log_loss(y_true: list, y_pred: list, eps: float = 1e-15) -> list:
+    
     losses = []
 
     for true, pred in zip(y_true, y_pred):
-        #preventing log(o) gerade
+
+        # Prevent log(0)
         pred = min(1 - eps, max(eps, pred))
 
-        #rechnen loss
+        # Calculate loss
         if true == 1:
             loss = -math.log(pred)
         else:
